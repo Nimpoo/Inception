@@ -19,7 +19,7 @@ service:
       context: ./
       dockerfile: requirement/nginx/Dockerfile
 
-    container_name:	nginx
+    container_name: nginx
 # depends_on:
 #   - wordpress
   ports:
@@ -31,15 +31,15 @@ service:
 
   mariadb:
     build:
-	  context: .
-	  dockerfile: mariadb/Dockerfile
-	  args:
-	  	DB_NAME: ${DB_NAME}
-		DB_USER: ${DB_USER}
-		DB_PASS: ${DB_PASS}
-		DB_ROOT: ${DB_ROOT}
-	container_name: mariadb
-	ports:
-	  - "3306:3306"
-	restart: always
+      context: .
+      dockerfile: mariadb/Dockerfile
+      args:
+        DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_ROOT: ${DB_ROOT}
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    restart: always
 
