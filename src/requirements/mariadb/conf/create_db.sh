@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    create_db.sh                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sihemayoub <sihemayoub@student.42.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/31 18:21:42 by sihemayoub        #+#    #+#              #
+#    Updated: 2023/05/31 18:21:48 by sihemayoub       ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #!bin/sh
 
 if [ ! -d "/var/lib/mysql/mysql" ]; then
@@ -33,4 +45,3 @@ EOF
 	/usr/bin/mysqld --user=mysql --bootstrap < /tmp/create_db.sql
 	rm -f /tmp/create_db.sql
 fi
-
