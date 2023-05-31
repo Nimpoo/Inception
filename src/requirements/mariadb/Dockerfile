@@ -24,12 +24,12 @@ RUN mkdir /var/run/mysqld;							\
 	sed -i "s|skip-networking|skip-networking=o|g"	\
 	/etc/my.cnf.d/mariadb-server.cnf
 
-RUN mysql_instqll_db --user=mysql --dqtqdir=/var/lib/mysql
+RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
 
 EXPOSE 3306
 
 USER mysql
-COPY tools/db.sh ./
+COPY tools/create_db.sh ./
 ENTRYPOINT ["sh", "create_db.sh"]
 CMD ["/usr/bin/mysqld", "--skip-log-error"]
 
