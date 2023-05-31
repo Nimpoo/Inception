@@ -19,16 +19,16 @@ service:
       context: .
       dockerfile: requirement/nginx/Dockerfile
     container_name: nginx
-  depends_on:
-   - wordpress
-  ports:
-    - "443:443"
-  networks:
-    - inception
-  volumes:
-    - ./requirement/nginx/conf/:/etc/nginx/http.d/
-    - ./requirement/nginx/tools/:/etc/nginx/ssl/
-  restart: always
+    depends_on:
+     - wordpress
+    ports:
+      - "443:443"
+    networks:
+      - inception
+    volumes:
+      - ./requirement/nginx/conf/:/etc/nginx/http.d/
+      - ./requirement/nginx/tools/:/etc/nginx/ssl/
+    restart: always
 
   mariadb:
     build:
@@ -36,9 +36,9 @@ service:
       dockerfile: mariadb/Dockerfile
       args:
         DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASS: ${DB_PASS}
-      DB_ROOT: ${DB_ROOT}
+        DB_USER: ${DB_USER}
+        DB_PASS: ${DB_PASS}
+        DB_ROOT: ${DB_ROOT}
     container_name: mariadb
     ports:
       - "3306:3306"
