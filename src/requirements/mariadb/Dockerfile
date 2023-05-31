@@ -30,6 +30,6 @@ EXPOSE 3306
 
 USER mysql
 COPY tools/db.sh ./
-ENTRYPOINT ["sh", "creat_db.sh"]
+ENTRYPOINT ["sh", "create_db.sh"]
 CMD ["/usr/bin/mysqld", "--skip-log-error"]
 
