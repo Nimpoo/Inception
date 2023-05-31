@@ -6,7 +6,7 @@
 #    By: sihemayoub <sihemayoub@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/31 18:21:42 by sihemayoub        #+#    #+#              #
-#    Updated: 2023/05/31 18:21:48 by sihemayoub       ###   ########.fr        #
+#    Updated: 2023/05/31 21:57:34 by sihemayoub       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ if [ ! -d "/var/lib/mysql/wordpress" ]; then
 
 USE				mysql;
 FLUSH PRIVILEGES;
+
 DELETE FROM		mysql.user WHERE User='';
 DROP DATABASE	test;
 DELETE FROM		mysql.db WHERE Db='test';
@@ -39,6 +40,7 @@ ALTER USER		'root'@'localhost' IDENTIFIED BY '${DB_ROOT}';
 CREATE DATABASE	${DB_NAME} CHARACTER SET utf8 COLLATE utf8_general_ci;
 CREATE USER		'${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';
 GRANT ALL		PRIVILEGES ON wordpress.* TO '${DB_USER}'@'%';
+
 FLUSH PRIVILEGES;
 EOF
 	# run init.sql
