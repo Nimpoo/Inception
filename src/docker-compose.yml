@@ -16,9 +16,8 @@ service:
 
   nginx:
     build:
-      context: ./
+      context: .
       dockerfile: requirement/nginx/Dockerfile
-
     container_name: nginx
 # depends_on:
 #   - wordpress
@@ -43,3 +42,17 @@ service:
       - "3306:3306"
     restart: always
 
+  wordpress:
+    build:
+      context: .
+      dockerfile: wordpress/Dockerfile
+      args:
+        DB_NAME: ${DB_NAME}
+        DB_USER: ${DB_USER}
+        DB_PASS: ${DB_PASS}
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    restart: always
+    volumes:
+      - wp-volume:/var/www/
