@@ -12,7 +12,7 @@
 
 FROM alpine:3.17.3
 
-ARG PHP_VERSION=8	\
+ARG PHP_VERSION=81	\
 	DB_NAME			\
 	DB_USER			\
 	DB_PASS
@@ -32,14 +32,14 @@ RUN apk update && apk upgrade && apk add --no-cache	\
 	php${PHP_VERSION}-zip		\
 	php${PHP_VERSION}-redis		\
 	wget						\
-	unzip						\
+	unzip &&					\
 	sed -i "s|listen = 127.0.0.1:9000|listen = 9000|g"			\
-	etc/php8/php-fpm.d/www.conf									\
+		etc/php81/php-fpm.d/www.conf &&							\
 	sed -i "s|;listen.owner = nobody|listen.owner = nobody|g"	\
-	/etc/php8/php-fpm.d/www.conf								\
+		/etc/php81/php-fpm.d/www.conf &&							\
 	sed -i "s|;listen.group = nobody|listen.group = nobody|g"	\
-	/etc/php8/php-fpm.d/www.conf								\
-	&& rm -f /var/cache/apk/*
+		/etc/php81/php-fpm.d/www.conf &&							\
+	rm -f /var/cache/apk/*
 
 WORKDIR /var/www
 
@@ -53,4 +53,4 @@ COPY ./requirements/wordpress/conf/wp-config-create.sh .
 RUN sh wp-config-create.sh && rm wp-config-create.sh &&	\
 	chmod -R 0777 wp-content/
 
-CMD ["/usr/sbin/php-fpm8", "-F"]
+CMD ["/usr/sbin/php-fpm81", "-F"]
