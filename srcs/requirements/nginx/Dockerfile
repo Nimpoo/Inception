@@ -12,13 +12,9 @@
 
 FROM alpine:3.17.3
 
-RUN apk upgrade && apk update && apk add --no-cache nginx	\
-	openssl &&						\
-	mkdir -p /etc/ssl/private &&	\
-	mkdir -p /etc/ssl/certs &&		\
-	mkdir -p /var/www/html
+RUN apk upgrade && apk update && apk add --no-cache nginx
 
-COPY "requirements/nginx/conf/nginx.conf" "/etc/nginx/nginx.conf"  
+COPY "requirements/nginx/conf/nginx.conf" "/etc/nginx/http.d/nginx.conf"  
 
 EXPOSE 443
 
