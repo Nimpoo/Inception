@@ -28,12 +28,13 @@ services:
     volumes:
       - ./requirements/nginx/conf/:/etc/nginx/http.d/
       - ./requirements/nginx/tools:/etc/nginx/ssl/
+      - /home/BordelInception/data/wordpress:/var/www
     restart: always
 
   mariadb:
     build:
       context: .
-      dockerfile: requirements/mariadb/Dockerfile
+      dockerfile: requirements/mariadb/Dockerfile/
       args:
         DB_NAME: ${DB_NAME}
         DB_USER: ${DB_USER}
@@ -45,6 +46,8 @@ services:
     networks:
       - inception
     restart: always
+    volumes:
+      - db-volume:/var/lib/mysql
 
   wordpress:
     build:
